@@ -90,7 +90,8 @@
     } else if ([resourcePath hasPrefix:CDVFILE_PREFIX]) {
         CDVFile *filePlugin = [self.commandDelegate getCommandInstance:@"File"];
         CDVFilesystemURL *url = [CDVFilesystemURL fileSystemURLWithString:resourcePath];
-        filePath = [filePlugin filesystemPathForURL:url];
+        NSObject<CDVFileSystem> *filesystem  = [filePlugin filesystemForURL:url];
+        filePath = [filesystem filesystemPathForURL:url];
         if (filePath == nil) {
             resourceURL = [NSURL URLWithString:resourcePath];
         }
@@ -134,7 +135,8 @@
     } else if ([resourcePath hasPrefix:CDVFILE_PREFIX]) {
         CDVFile *filePlugin = [self.commandDelegate getCommandInstance:@"File"];
         CDVFilesystemURL *url = [CDVFilesystemURL fileSystemURLWithString:resourcePath];
-        filePath = [filePlugin filesystemPathForURL:url];
+        NSObject<CDVFileSystem> *filesystem  = [filePlugin filesystemForURL:url];
+        filePath = [filesystem filesystemPathForURL:url];
         if (filePath == nil) {
             resourceURL = [NSURL URLWithString:resourcePath];
         }
